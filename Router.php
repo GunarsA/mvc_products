@@ -17,6 +17,19 @@ class Router
     }
     public function resolve()
     {
-        
+        $url = $_SERVER['PATH_INFO'] ?? '/';
+        $method = strtolower($_SERVER['REQUEST_METHOD']);
+
+        if ($method === 'get') {
+            $fn = $this->getRoutes[$url] ?? null;
+        } else {
+            $fn = $this->postRoutes[$url] ?? null;
+        }
+
+        if ($fn) {
+            call_user_func($fn);
+        } else {
+            echo "Page not found";
+        }
     }
 }
