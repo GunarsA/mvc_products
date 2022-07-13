@@ -1,0 +1,15 @@
+{
+    "name": "gunarsabeltins/lamp-server",
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
+    },
+    "authors": [
+        {
+            "name": "Gunārs Ābeltiņš",
+            "email": "gunars2003@gmail.com"
+        }
+    ],
+    "require": {}
+}
