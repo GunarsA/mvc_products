@@ -1,11 +1,13 @@
 <?php
 
 require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../config.php';
 
 use app\Router;
 use app\controllers\ProductController;
 
-$router = new Router();
+$database = new \app\Database();
+$router = new Router($database);
 
 $router->get('/', [ProductController::class, 'index']);
 $router->get('/add-product', [ProductController::class, 'create']);

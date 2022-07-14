@@ -7,6 +7,13 @@ class Router
     public array $getRoutes = [];
     public array $postRoutes = [];
 
+    public ?Database $database = null;
+
+    public function __construct(Database $database)
+    {
+        $this->database = $database;
+    }
+
     public function get($url, $fn)
     {
         $this->getRoutes[$url] = $fn;
@@ -27,9 +34,11 @@ class Router
         }
 
         if ($fn) {
-            call_user_func($fn);
+            call_user_func($fn, $this->database);
         } else {
             echo "Page not found";
+            exit;
         }
+        
     }
 }
