@@ -4,18 +4,21 @@ namespace app\controllers;
 
 use app\models\Product;
 use app\core\Database;
+use app\view\ProductView;
 
 class ProductController
 {
-    public static function index(Database $DB)
+    public static function index()
     {
-        echo '<h1> Index Page </h1>';
-        $keyword = $_GET['search'] ?? '';
-        $products = $DB->getProducts($keyword);
+        $DB = new Database();
+        $products = $DB->getProducts();
+        ProductView::renderView('products/list', [
+            'products' => $products
+        ]);
 
-        echo '<pre>';
-        var_dump($products);
-        echo '</pre>';
+        // echo '<pre>';
+        // var_dump($products);
+        // echo '</pre>';
     }
     public static function create()
     {

@@ -38,7 +38,7 @@ class Database
                 VALUES (:sku, :name, :price, :type, :value)");
 
         $statement->bindValue(':sku', $product->sku);
-        $statement->bindValue(':title', $product->title);
+        $statement->bindValue(':name', $product->name);
         $statement->bindValue(':price', $product->price);
         $statement->bindValue(':type', $product->type);
         $statement->bindValue(':value', $product->value);
