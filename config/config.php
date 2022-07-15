@@ -1,6 +1,6 @@
 <?php
 
-namespace app;
+namespace app\config;
 
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'lamp_server');

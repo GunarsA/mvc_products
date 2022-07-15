@@ -2,8 +2,7 @@
 
 namespace app\models;
 
-use app\Database;
-
+use app\core\Database;
 class Product
 {
     public string $sku;

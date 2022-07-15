@@ -3,7 +3,7 @@
 namespace app\controllers;
 
 use app\models\Product;
-use app\Database;
+use app\core\Database;
 
 class ProductController
 {
