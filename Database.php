@@ -17,7 +17,7 @@ class Database
 
     public function getProducts()
     {
-       
+
         $statement = $this->pdo->prepare('SELECT * FROM products');
         $statement->execute();
 

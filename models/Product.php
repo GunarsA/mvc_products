@@ -23,6 +23,5 @@ class Product
 
     public function save()
     {
-        
     }
 }
