@@ -2,8 +2,7 @@
 
 namespace app\models;
 
-use app\core\Database;
-class Product
+abstract class Product
 {
     public string $sku;
     public string $name;
@@ -20,7 +19,45 @@ class Product
         $this->value = $data->value;
     }
 
-    public function save()
+    public function validateData()
     {
+        if (!$this->validateSku()) {
+            return false;
+        }
+        if (!$this->validateName()) {
+            return false;
+        }
+        if (!$this->validatePrice()) {
+            return false;
+        }
+        if (!$this->validateType()) {
+            return false;
+        }
+        if (!$this->validateValue()) {
+            return false;
+        }
+        return true;
     }
+
+    public function validateSku()
+    {
+        return true;
+    }
+
+    public function validateName()
+    {
+        return true;
+    }
+
+    public function validatePrice()
+    {
+        return true;
+    }
+
+    public function validateType()
+    {
+        return true;
+    }
+
+    abstract public function validateValue();
 }
