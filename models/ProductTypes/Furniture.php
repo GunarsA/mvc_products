@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models\Products;
+namespace app\models\ProductTypes;
 
 use app\models\Product;
 use app\models\ProductValidate;

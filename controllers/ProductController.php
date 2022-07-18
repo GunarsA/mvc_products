@@ -3,10 +3,7 @@
 namespace app\controllers;
 
 use app\core\Database;
-use app\models\Product;
-use app\models\Products\Disc;
-use app\models\Products\Book;
-use app\models\Products\Furniture;
+use app\models\ProductTypes\{Disc, Book, Furniture};
 use app\view\ProductView;
 
 class ProductController
@@ -14,7 +11,7 @@ class ProductController
     public static function index()
     {
         $db = new Database();
-        ProductView::renderView('products/list', [
+        ProductView::renderView('list', [
             'products' => $db->getProducts()
         ]);
 
@@ -58,7 +55,7 @@ class ProductController
             exit;
         }
 
-        ProductView::renderView('/add-product', [
+        ProductView::renderView('/add', [
             'product' => $productData
         ]);
     }

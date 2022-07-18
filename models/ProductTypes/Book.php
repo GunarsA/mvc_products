@@ -1,11 +1,11 @@
 <?php
 
-namespace app\models\Products;
+namespace app\models\ProductTypes;
 
 use app\models\Product;
 use app\models\ProductValidate;
 
-class Disc extends Product implements ProductValidate
+class Book extends Product implements ProductValidate
 {
     public function validateValue()
     {
