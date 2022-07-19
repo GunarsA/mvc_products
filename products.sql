@@ -12,14 +12,14 @@ CREATE TABLE `products` (
   `sku` varchar(255) COLLATE utf8_bin NOT NULL,
   `name` varchar(255) COLLATE utf8_bin NOT NULL,
   `price` float NOT NULL,
-  `type` int(11) NOT NULL,
+  `type` varchar(255) COLLATE utf8_bin NOT NULL,
   `value` varchar(255) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 INSERT INTO `products` (`sku`, `name`, `price`, `type`, `value`) VALUES
-('GGWP0007', 'War and Peace', 20, 2, '2 KG'),
-('JVC200123', 'Acme DISC', 1, 1, '700 MB'),
-('TR120555', 'Chair', 40, 3, '24x45x15');
+('GGWP0007', 'War and Peace', 20, 'Book', '2 KG'),
+('JVC200123', 'Acme DISC', 1, 'DVD', '700 MB'),
+('TR120555', 'Chair', 40, 'Furniture', '24x45x15 CM');
 
 
 ALTER TABLE `products`

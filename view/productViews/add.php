@@ -2,14 +2,14 @@
     <div class="container-fluid px-4 ">
         <h2 class="navbar-brand">Product Add</h2>
         <span>
-            <button for="product-form" class="btn btn-outline-dark" type="submit">Save</button>
+            <button form="product-form" class="btn btn-outline-dark" type="submit">Save</button>
             <a href="/" type="button" class="btn btn-outline-dark" type="submit">Cancel</a>
         </span>
     </div>
 </nav>
 
 <div class="container">
-    <form method="post">
+    <form method="post" id="product-form">
         <fieldset>
             <div class="row mb-3 g-3 align-items-center">
                 <div class="col-sm-1">
@@ -51,7 +51,7 @@
                 </div>
             </div>
         </fieldset>
-        
+
         <div class="row mb-3 g-3 align-items-center">
             <div class="col-auto">
                 <label for="productType">Type Switcher</label>

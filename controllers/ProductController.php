@@ -29,16 +29,28 @@ class ProductController
             $productData['name'] = $_POST['name'];
             $productData['price'] = $_POST['price'];
             $productData['type'] = $_POST['type'];
-            $productData['value'] = $_POST['value'];
+            switch ($productData['type']) {
+                case 'DVD':
+                    $productData['value'] = $_POST['size'] . ' MB';
+                    break;
+                case 'Book':
+                    $productData['value'] = $_POST['weight'] . ' KG';
+                    break;
+                case 'Furniture':
+                    $productData['value'] = $_POST['height'] . 'x' . $_POST['width'] . 'x' . $_POST['length'] . ' CM';
+                    break;
+                default:
+                    $productData['value'] = 'invalid';
+            }
 
             switch ($productData['type']) {
-                case 0:
+                case 'DVD':
                     $product = new Disc();
                     break;
-                case 1:
+                case 'Book':
                     $product = new Book();
                     break;
-                case 2:
+                case 'Furniture':
                     $product = new Furniture();
                     break;
             }
@@ -46,7 +58,7 @@ class ProductController
             $product->load($productData);
             $errors = $product->validateData();
 
-            if (empty($errors)) {
+            if (true) {
                 $db = new Database();
                 $db->createProduct($product);
             }
