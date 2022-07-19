@@ -2,15 +2,13 @@
     <div class="container-fluid px-4 ">
         <h2 class="navbar-brand">Products List</h2>
         <span>
-            <a type="button" class="btn btn-outline-dark" type="submit">Add</a>
-            <form action="/delete-product" method="post" id="delete-form" class="d-inline-block" >
-                <button for="delete-form" id="delete-product-btn" class="btn btn-outline-dark" type="submit">Mass delete</button>
+            <a href="/add-product" type="button" class="btn btn-outline-dark" type="submit">Add</a>
+            <form action="/delete-product" method="post" id="delete-form" class="d-inline-block">
+                <button for="delete-form" class="btn btn-outline-dark" type="submit">Mass delete</button>
             </form>
         </span>
     </div>
 </nav>
-
-
 
 <div class="container my-5">
     <div class="row g-4">
@@ -18,7 +16,7 @@
             <div class="col-6 col-md-3">
                 <div class="card border-primary">
                     <div class="card-body">
-                        <div class="form-check-inline"> 
+                        <div class="form-check-inline">
                             <label class="form-check-label">
                                 <input form="delete-form" type="checkbox" class="form-check-input" name="<?= $product['sku'] ?>">
                             </label>

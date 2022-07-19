@@ -20,7 +20,7 @@ class ProductController
         // echo '</pre>';
     }
 
-    public function create()
+    public static function create()
     {
         $productData = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
