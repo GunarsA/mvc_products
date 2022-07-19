@@ -9,15 +9,29 @@ if (window.location.pathname === "/add-product") {
     bookField.classList.add("d-none");
     furnitureField.classList.add("d-none");
 
+    document.querySelectorAll("#descriptions input").forEach((element) => {
+      element.removeAttribute("required");
+    });
+
     switch (e.target.value) {
       case "DVD":
         discField.classList.remove("d-none");
+        discField.querySelectorAll("input").forEach((element) => {
+          element.setAttribute("required", "");
+        });
         break;
       case "Book":
         bookField.classList.remove("d-none");
+        bookField.querySelectorAll("input").forEach((element) => {
+          element.setAttribute("required", "");
+        });
         break;
       case "Furniture":
         furnitureField.classList.remove("d-none");
+        const temp = furnitureField.querySelectorAll("input");
+        temp.forEach((element) => {
+          element.setAttribute("required", "");
+        });
         break;
     }
   });

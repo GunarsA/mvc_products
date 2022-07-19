@@ -2,6 +2,8 @@
 
 namespace app\models;
 
+use app\core\Database;
+
 abstract class Product
 {
     public string $sku;
@@ -21,42 +23,56 @@ abstract class Product
 
     public function validateData()
     {
-        if (!$this->validateSku()) {
-            return false;
+        $errors = [];
+        if ($this->validateSku()) {
+            $errors[] = $this->validateSku();
         }
-        if (!$this->validateName()) {
-            return false;
+        if ($this->validateName()) {
+            $errors[] = $this->validateName();
         }
-        if (!$this->validatePrice()) {
-            return false;
+        if ($this->validatePrice()) {
+            $errors[] = $this->validatePrice();
         }
-        if (!$this->validateType()) {
-            return false;
+        if ($this->validateType()) {
+            $errors[] = $this->validateType();
         }
-        if (!$this->validateValue()) {
-            return false;
+        if ($this->validateValue()) {
+            $errors[] = $this->validateValue();
         }
-        return true;
+        return $errors;
     }
 
     public function validateSku()
     {
-        return true;
+        $db = new Database();
+        if ($db->getProduct($this->sku)) {
+            return "SKU already taken. Choose different one!";
+        }
+        return "";
     }
 
     public function validateName()
     {
-        return true;
+        if ($this->name === '') {
+            return "Enter valid name!";
+        }
+        return "";
     }
 
     public function validatePrice()
     {
-        return true;
+        if (filter_var($this->price, FILTER_VALIDATE_FLOAT) && (strlen($this->price) > 0) && floatval($this->price >= 0)) {
+            return "Enter valid price!";
+        }
+            return "";
     }
 
     public function validateType()
     {
-        return true;
+        if($this->type !== 'DVD' || $this->type !== 'Book' || $this->type !== 'Furniture') {
+            return "Choose valid type!";
+        }
+        return "";
     }
 
     abstract public function validateValue();

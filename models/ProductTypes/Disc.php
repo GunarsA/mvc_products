@@ -9,6 +9,6 @@ class Disc extends Product implements ProductValidate
 {
     public function validateValue()
     {
-        return true;
+        return "";
     }
 };

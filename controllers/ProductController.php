@@ -14,17 +14,13 @@ class ProductController
         ProductView::renderView('list', [
             'products' => $db->getProducts()
         ]);
-
-        // echo '<pre>';
-        // var_dump($products);
-        // echo '</pre>';
     }
 
     public static function create()
     {
         $productData = [];
+        $errors = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
             $productData['sku'] = $_POST['sku'];
             $productData['name'] = $_POST['name'];
             $productData['price'] = $_POST['price'];
@@ -58,16 +54,16 @@ class ProductController
             $product->load($productData);
             $errors = $product->validateData();
 
-            if (true) {
+            if (!$errors) {
                 $db = new Database();
                 $db->createProduct($product);
+                header('Location: /');
+                exit;
             }
-
-            header('Location: /');
-            exit;
         }
 
         ProductView::renderView('/add', [
+            'errors' => $errors,
             'product' => $productData
         ]);
     }
