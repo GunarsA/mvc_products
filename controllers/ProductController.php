@@ -70,21 +70,12 @@ class ProductController
 
     public static function delete()
     {
-        echo "<h1> Delete page </h1>";
-
-        echo '<pre>';
-        var_dump($_POST);
-        echo '</pre>';
-
-        $id = $_POST ?? null;
-        if (!$id) {
-            header('Location: /');
-            exit;
+        if($_POST) {
+            $db = new Database();
+            foreach ($_POST as $key => $value) {
+                $db->deleteProduct($key);
+            }
         }
-
-        // if ($router->database->deleteProduct($id)) {
-        //     header('Location: /products');
-        //     exit;
-        // }
+        header('Location: /');
     }
 }
