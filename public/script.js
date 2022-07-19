@@ -35,4 +35,68 @@ if (window.location.pathname === "/add-product") {
         break;
     }
   });
+
+  // fetch("/read-product?sku=GGWP0007")
+  //   .then((response) => response.json())
+  //   .then((json) => console.log(json));
 }
+
+(() => {
+  "use strict";
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll(".needs-validation");
+
+  // Loop over them and prevent submission
+  Array.from(forms).forEach((form) => {
+    form.addEventListener(
+      "submit",
+      (event) => {
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+
+        form.classList.add("was-validated");
+      },
+      false
+    );
+  });
+
+  const inputs = document.querySelectorAll(".form-control");
+
+  // Loop over them and prevent submission
+  Array.from(inputs).forEach((input) => {
+    input.addEventListener(
+      "focusout",
+      (event) => {
+        input.parentElement.classList.add("was-validated");
+      },
+      false
+    );
+  });
+
+  const sku = document.querySelector("#sku");
+  sku.addEventListener("focusout", (event) => {
+    fetch("/read-product?sku=" + event.target.value)
+      .then((response) => response.json())
+      .then((json) => {
+        if (json.exists === "true") {
+          event.target.setCustomValidity("already exists");
+        } else {
+          event.target.setCustomValidity("");
+        }
+      });
+    event.target.addEventListener("input", (event) => {
+      fetch("/read-product?sku=" + event.target.value)
+        .then((response) => response.json())
+        .then((json) => {
+          if (json.exists === "true") {
+            event.target.setCustomValidity("already exists");
+          } else {
+            event.target.setCustomValidity("");
+          }
+        });
+    });
+  });
+})();

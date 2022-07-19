@@ -17,7 +17,7 @@
 <?php endif; ?>
 
 <div class="container">
-    <form method="post" id="product-form">
+    <form method="post" id="product-form" class="needs-validation" novalidate>
         <fieldset>
             <div class="row mb-3 g-3 align-items-center">
                 <div class="col-sm-1">
@@ -61,12 +61,12 @@
         </fieldset>
 
         <div class="row mb-3 g-3 align-items-center">
-            <div class="col-auto">
-                <label for="productType">Type Switcher</label>
+            <div class="col-sm-1">
+                <label for="productType">Product Type</label>
             </div>
             <div class="col-auto">
                 <select required id="productType" name="type" class="form-select">
-                    <option selected>Type Switcher</option>
+                    <option selected value="">Type Switcher</option>
                     <option value="DVD">DVD</option>
                     <option value="Book">Book</option>
                     <option value="Furniture">Furniture</option>

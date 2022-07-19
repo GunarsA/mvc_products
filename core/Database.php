@@ -17,7 +17,6 @@ class Database
 
     public function getProducts()
     {
-
         $statement = $this->pdo->prepare('SELECT * FROM products');
         $statement->execute();
 
@@ -27,8 +26,9 @@ class Database
     public function getProduct($sku) {
         $statement = $this->pdo->prepare('SELECT * FROM products WHERE sku = :sku');
         $statement->bindValue(':sku', $sku);
+        $statement->execute();
 
-        return $statement->execute();
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function deleteProduct($sku)

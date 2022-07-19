@@ -18,6 +18,9 @@ class Router
     public function resolve()
     {
         $url = $_SERVER['REQUEST_URI'] ?? '/';
+        if (strpos($url, '?')) {
+            $url = substr($url, 0, strpos($url, '?'));
+        }
         $method = strtolower($_SERVER['REQUEST_METHOD']);
 
         if ($method === 'get') {

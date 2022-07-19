@@ -15,4 +15,6 @@ $router->get('/add-product', [ProductController::class, 'create']);
 $router->post('/add-product', [ProductController::class, 'create']);
 $router->post('/delete-product', [ProductController::class, 'delete']);
 
+$router->get('/read-product', [ProductController::class, 'read']);
+
 $router->resolve();

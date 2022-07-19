@@ -62,18 +62,21 @@ abstract class Product
     public function validatePrice()
     {
         if (filter_var($this->price, FILTER_VALIDATE_FLOAT) && (strlen($this->price) > 0) && floatval($this->price >= 0)) {
-            return "Enter valid price!";
-        }
             return "";
+        }
+            return "Enter valid price!";
     }
 
     public function validateType()
     {
-        if($this->type !== 'DVD' || $this->type !== 'Book' || $this->type !== 'Furniture') {
+        if($this->type !== 'DVD' && $this->type !== 'Book' && $this->type !== 'Furniture') {
             return "Choose valid type!";
         }
         return "";
     }
 
-    abstract public function validateValue();
+    public function validateValue() 
+    {
+        return "";
+    }
 }

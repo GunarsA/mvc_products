@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\core\Database;
+use app\models\Product;
 use app\models\ProductTypes\{Disc, Book, Furniture};
 use app\view\ProductView;
 
@@ -49,6 +50,8 @@ class ProductController
                 case 'Furniture':
                     $product = new Furniture();
                     break;
+                default:
+                    $product = new Product();
             }
 
             $product->load($productData);
@@ -78,4 +81,16 @@ class ProductController
         }
         header('Location: /');
     }
+
+    public static function read() {
+        header('Content-Type: application/json');
+        $db = new Database();
+        if($db->getProduct($_GET['sku'])){
+            echo '{"exists": "true"}';
+        }
+        else {
+            echo '{"exists": "false"}';
+        }
+    }
 }
+
