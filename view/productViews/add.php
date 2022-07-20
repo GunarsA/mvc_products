@@ -1,6 +1,6 @@
 <nav class="navbar bg-primary mb-5">
-    <div class="container-fluid px-4 ">
-        <h2 class="navbar-brand">Product Add</h2>
+    <div class="container-fluid px-4">
+        <h2 class="navbar-brand my-auto">Product Add</h2>
         <span>
             <button form="product-form" class="btn btn-outline-dark" type="submit">Save</button>
             <a href="/" type="button" class="btn btn-outline-dark" type="submit">Cancel</a>
@@ -35,7 +35,7 @@
                 </div>
                 <div class="col-sm-auto">
                     <span id="skuHelpInline" class="form-text">
-                        Lorem ipsum dolor sit amet consectetur adipisicing.
+                        Stock Keeping Unit needs to be unique.
                     </span>
                 </div>
             </div>
@@ -52,7 +52,7 @@
                 </div>
                 <div class="col-sm-auto">
                     <span id="nameHelpInline" class="form-text">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing.
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde, nostrum impedit.
                     </span>
                 </div>
             </div>
@@ -68,13 +68,13 @@
                 </div>
                 <div class="col-sm-auto">
                     <span id="priceHelpInline" class="form-text">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing.
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     </span>
                 </div>
             </div>
         </fieldset>
 
-        <div class="row mb-3 g-3 align-items-center">
+        <div class="row mb-5 g-3 align-items-center">
             <div class="col-sm-2 col-lg-1">
                 <label for="productType">Product Type</label>
             </div>
@@ -95,9 +95,12 @@
                 </span>
             </div>
         </div>
-        
+
         <div id="descriptions">
             <fieldset id="discDescription" class="d-none">
+                <div class="row mb-1">
+                    <legend>Provide size</legend>
+                </div>
                 <div class="row mb-3 g-3 align-items-center">
                     <div class="col-sm-2 col-lg-1">
                         <label for="size" class="col-form-label">Size (MB)</label>
@@ -107,13 +110,16 @@
                     </div>
                     <div class="col-sm-auto">
                         <span class="form-text">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore, consequatur.
+                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Enim.
                         </span>
                     </div>
                 </div>
             </fieldset>
 
             <fieldset id="bookDescription" class="d-none">
+                <div class="row mb-1">
+                    <legend>Provide weight</legend>
+                </div>
                 <div class="row mb-3 g-3 align-items-center">
                     <div class="col-sm-2 col-lg-1">
                         <label for="size" class="col-form-label">Weight (MB)</label>
@@ -123,13 +129,16 @@
                     </div>
                     <div class="col-sm-auto">
                         <span class="form-text">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore, consequatur.
+                            Lorem ipsum dolor sit amet consectetur.
                         </span>
                     </div>
                 </div>
             </fieldset>
 
             <fieldset id="furnitureDescription" class="d-none">
+                <div class="row mb-1">
+                    <legend>Provide dimensions</legend>
+                </div>
                 <div class="row mb-3 g-3 align-items-center">
                     <div class="col-sm-2 col-lg-1">
                         <label for="size" class="col-form-label">Height (CM)</label>
@@ -139,7 +148,7 @@
                     </div>
                     <div class="col-sm-auto">
                         <span class="form-text">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore, consequatur.
+                           Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         </span>
                     </div>
                 </div>
@@ -165,7 +174,7 @@
                     </div>
                     <div class="col-sm-auto">
                         <span class="form-text">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore, consequatur.
+                            Lorem ipsum dolor sit amet.
                         </span>
                     </div>
                 </div>

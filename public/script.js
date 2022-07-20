@@ -1,15 +1,16 @@
-if (window.location.pathname === "/add-product") {
-  ("use strict");
+"use strict";
 
+if (window.location.pathname === "/add-product") {
   function addSubmitValidation() {
-    document.querySelector(".needs-validation").addEventListener(
+    const form = document.querySelector(".needs-validation");
+    form.addEventListener(
       "submit",
       (event) => {
         if (!form.checkValidity()) {
           event.preventDefault();
           event.stopPropagation();
         }
-  
+
         form.classList.add("was-validated");
       },
       false
@@ -17,8 +18,7 @@ if (window.location.pathname === "/add-product") {
   }
 
   function addIndividualValidation() {
-    const inputs = document.querySelectorAll("[required]");
-    Array.from(inputs).forEach((input) => {
+    Array.from(document.querySelectorAll("[required]")).forEach((input) => {
       console.log(input);
       input.addEventListener(
         "focusout",
@@ -31,43 +31,45 @@ if (window.location.pathname === "/add-product") {
   }
 
   function addAttributeSwitcher() {
-    document.querySelector("#productType").addEventListener("change", (event) => {
-      const discField = document.querySelector("#discDescription");
-      const bookField = document.querySelector("#bookDescription");
-      const furnitureField = document.querySelector("#furnitureDescription");
+    document
+      .querySelector("#productType")
+      .addEventListener("change", (event) => {
+        const discField = document.querySelector("#discDescription");
+        const bookField = document.querySelector("#bookDescription");
+        const furnitureField = document.querySelector("#furnitureDescription");
 
-      discField.classList.add("d-none");
-      bookField.classList.add("d-none");
-      furnitureField.classList.add("d-none");
+        discField.classList.add("d-none");
+        bookField.classList.add("d-none");
+        furnitureField.classList.add("d-none");
 
-      document.querySelectorAll("#descriptions input").forEach((element) => {
-        element.removeAttribute("required");
+        document.querySelectorAll("#descriptions input").forEach((element) => {
+          element.removeAttribute("required");
+        });
+
+        switch (event.target.value) {
+          case "DVD":
+            discField.classList.remove("d-none");
+            discField.querySelectorAll("input").forEach((element) => {
+              element.setAttribute("required", "");
+            });
+            break;
+          case "Book":
+            bookField.classList.remove("d-none");
+            bookField.querySelectorAll("input").forEach((element) => {
+              element.setAttribute("required", "");
+            });
+            break;
+          case "Furniture":
+            furnitureField.classList.remove("d-none");
+            const temp = furnitureField.querySelectorAll("input");
+            temp.forEach((element) => {
+              element.setAttribute("required", "");
+            });
+            break;
+        }
+
+        addIndividualValidation();
       });
-
-      switch (event.target.value) {
-        case "DVD":
-          discField.classList.remove("d-none");
-          discField.querySelectorAll("input").forEach((element) => {
-            element.setAttribute("required", "");
-          });
-          break;
-        case "Book":
-          bookField.classList.remove("d-none");
-          bookField.querySelectorAll("input").forEach((element) => {
-            element.setAttribute("required", "");
-          });
-          break;
-        case "Furniture":
-          furnitureField.classList.remove("d-none");
-          const temp = furnitureField.querySelectorAll("input");
-          temp.forEach((element) => {
-            element.setAttribute("required", "");
-          });
-          break;
-      }
-
-      addIndividualValidation();
-    });
   }
 
   function addSkuValidator() {
@@ -91,7 +93,7 @@ if (window.location.pathname === "/add-product") {
           }, 300);
         });
     };
-  
+
     const sku = document.querySelector("#sku");
     sku.addEventListener(
       "focusout",

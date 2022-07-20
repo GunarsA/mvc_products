@@ -6,17 +6,17 @@ use app\core\Database;
 
 abstract class Product
 {
-    public string $sku;
-    public string $name;
-    public float $price;
-    public string $type;
-    public string $value;
+    public ?string $sku;
+    public ?string $name;
+    public ?float $price;
+    public ?string $type;
+    public ?string $value;
 
     public function load($data)
     {
         $this->sku = $data['sku'];
         $this->name = $data['name'];
-        $this->price = $data['price'];
+        $this->price = floatval($data['price']);
         $this->type = $data['type'];
         $this->value = $data['value'];
     }
