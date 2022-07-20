@@ -17,7 +17,7 @@ class Database
 
     public function getProducts()
     {
-        $statement = $this->pdo->prepare('SELECT * FROM products');
+        $statement = $this->pdo->prepare('SELECT * FROM products ORDER BY sku');
         $statement->execute();
 
         return $statement->fetchAll(PDO::FETCH_ASSOC);

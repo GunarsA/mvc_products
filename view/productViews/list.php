@@ -1,6 +1,6 @@
 <nav class="navbar bg-primary">
-    <div class="container-fluid px-4 ">
-        <h2 class="navbar-brand">Products List</h2>
+    <div class="container-fluid px-4">
+        <h2 class="navbar-brand my-auto">Products List</h2>
         <span>
             <a href="/add-product" type="button" class="btn btn-outline-dark" type="submit">Add</a>
             <form action="/delete-product" method="post" id="delete-form" class="d-inline-block">
@@ -24,7 +24,22 @@
                         <p class="card-title text-center"><?= $product['sku'] ?></p>
                         <p class="card-text text-center"><?= $product['name'] ?></p>
                         <p class="card-text text-center"><?= $product['price'] ?> $</p>
-                        <p class="card-text text-center"><?= $product['value'] ?></p>
+                        <p class="card-text text-center">
+                            <?php
+                            switch ($product['type']) {
+                                case 'DVD':
+                                    echo 'Size: ';
+                                    break;
+                                case 'Book':
+                                    echo 'Weight: ';
+                                    break;
+                                case 'Furniture':
+                                    echo 'Dimensions: ';
+                                    break;
+                            }
+                            echo $product['value']
+                            ?>
+                        </p>
                     </div>
                 </div>
             </div>
