@@ -10,6 +10,7 @@
 
 <?php if (!empty($errors)) : ?>
     <div class="container alert alert-danger">
+        <h4>Didn't pass the server validation!</h4>
         <?php foreach ($errors as $error) : ?>
             <div><?= $error ?></div>
         <?php endforeach; ?>
@@ -20,79 +21,91 @@
     <form method="post" id="product-form" class="needs-validation" novalidate>
         <fieldset>
             <div class="row mb-3 g-3 align-items-center">
-                <div class="col-sm-1">
+                <div class="col-sm-2 col-lg-1">
                     <label for="sku" class="col-form-label">SKU</label>
                 </div>
-                <div class="col-auto position-relative">
-                        <input required type="text" id="sku" name="sku" value="<?= $product['sku'] ?? '' ?>" class="form-control" aria-describedby="skuHelpInline">
-                        <div id="spinner" class="spinner-border text-primary position-absolute d-none" role="status">
-                            <span class="visually-hidden">Loading...</span>
-                        </div>
+                <div class="col-sm-auto position-relative">
+                    <input required type="text" id="sku" name="sku" value="<?= $product['sku'] ?? '' ?>" class="form-control" aria-describedby="skuHelpInline">
+                    <div id="spinner" class="spinner-border text-primary position-absolute d-none" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <div id="skuFeedback" class="invalid-feedback">
+                        Please choose a SKU.
+                    </div>
                 </div>
-                <div class="col-auto">
+                <div class="col-sm-auto">
                     <span id="skuHelpInline" class="form-text">
-                        Must be 8-20 characters long.
+                        Lorem ipsum dolor sit amet consectetur adipisicing.
                     </span>
                 </div>
             </div>
 
             <div class="row mb-3 g-3 align-items-center">
-                <div class="col-sm-1">
+                <div class="col-sm-2 col-lg-1">
                     <label for="name" class="col-form-label">Name</label>
                 </div>
-                <div class="col-auto">
+                <div class="col-sm-auto">
                     <input required type="text" id="name" name="name" value="<?= $product['name'] ?? '' ?>" class="form-control" aria-describedby="nameHelpInline">
+                    <div class="invalid-feedback">
+                        Please choose a name.
+                    </div>
                 </div>
-                <div class="col-auto">
+                <div class="col-sm-auto">
                     <span id="nameHelpInline" class="form-text">
-                        Must be 8-20 characters long.
+                        Lorem, ipsum dolor sit amet consectetur adipisicing.
                     </span>
                 </div>
             </div>
             <div class="row mb-3 g-3 align-items-center">
-                <div class="col-sm-1">
+                <div class="col-sm-2 col-lg-1">
                     <label for="price" class="col-form-label">Price ($)</label>
                 </div>
-                <div class="col-auto">
+                <div class="col-sm-auto">
                     <input required type="number" step=".01" id="price" name="price" value="<?= $product['sku'] ?? '' ?>" class="form-control" aria-describedby="priceHelpInline">
+                    <div class="invalid-feedback">
+                        Please set a price.
+                    </div>
                 </div>
-                <div class="col-auto">
+                <div class="col-sm-auto">
                     <span id="priceHelpInline" class="form-text">
-                        Must be 8-20 characters long.
+                        Lorem ipsum dolor sit amet, consectetur adipisicing.
                     </span>
                 </div>
             </div>
         </fieldset>
 
         <div class="row mb-3 g-3 align-items-center">
-            <div class="col-sm-1">
+            <div class="col-sm-2 col-lg-1">
                 <label for="productType">Product Type</label>
             </div>
-            <div class="col-auto">
+            <div class="col-sm-auto">
                 <select required id="productType" name="type" class="form-select">
                     <option selected value="">Type Switcher</option>
                     <option value="DVD">DVD</option>
                     <option value="Book">Book</option>
                     <option value="Furniture">Furniture</option>
                 </select>
+                <div class="invalid-feedback">
+                    Please choose a product type.
+                </div>
             </div>
-            <div class="col-auto">
+            <div class="col-sm-auto">
                 <span id="priceHelpInline" class="form-text">
-                    Must be 8-20 characters long.
+                    Lorem ipsum dolor sit amet consectetur adipisicing.
                 </span>
             </div>
         </div>
-
+        
         <div id="descriptions">
             <fieldset id="discDescription" class="d-none">
                 <div class="row mb-3 g-3 align-items-center">
-                    <div class="col-sm-1">
+                    <div class="col-sm-2 col-lg-1">
                         <label for="size" class="col-form-label">Size (MB)</label>
                     </div>
-                    <div class="col-auto">
+                    <div class="col-sm-auto">
                         <input type="number" step=".01" id="size" name="size" class="form-control">
                     </div>
-                    <div class="col-auto">
+                    <div class="col-sm-auto">
                         <span class="form-text">
                             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore, consequatur.
                         </span>
@@ -102,13 +115,13 @@
 
             <fieldset id="bookDescription" class="d-none">
                 <div class="row mb-3 g-3 align-items-center">
-                    <div class="col-sm-1">
+                    <div class="col-sm-2 col-lg-1">
                         <label for="size" class="col-form-label">Weight (MB)</label>
                     </div>
-                    <div class="col-auto">
+                    <div class="col-sm-auto">
                         <input type="number" step=".01" id="weight" name="weight" class="form-control">
                     </div>
-                    <div class="col-auto">
+                    <div class="col-sm-auto">
                         <span class="form-text">
                             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore, consequatur.
                         </span>
@@ -118,39 +131,39 @@
 
             <fieldset id="furnitureDescription" class="d-none">
                 <div class="row mb-3 g-3 align-items-center">
-                    <div class="col-sm-1">
+                    <div class="col-sm-2 col-lg-1">
                         <label for="size" class="col-form-label">Height (CM)</label>
                     </div>
-                    <div class="col-auto">
+                    <div class="col-sm-auto">
                         <input type="number" step=".01" id="height" name="height" class="form-control">
                     </div>
-                    <div class="col-auto">
+                    <div class="col-sm-auto">
                         <span class="form-text">
                             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore, consequatur.
                         </span>
                     </div>
                 </div>
                 <div class="row mb-3 g-3 align-items-center">
-                    <div class="col-sm-1">
+                    <div class="col-sm-2 col-lg-1">
                         <label for="size" class="col-form-label">Width (CM)</label>
                     </div>
-                    <div class="col-auto">
+                    <div class="col-sm-auto">
                         <input type="number" step=".01" id="width" name="width" class="form-control">
                     </div>
-                    <div class="col-auto">
+                    <div class="col-sm-auto">
                         <span class="form-text">
                             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore, consequatur.
                         </span>
                     </div>
                 </div>
                 <div class="row mb-3 g-3 align-items-center">
-                    <div class="col-sm-1">
+                    <div class="col-sm-2 col-lg-1">
                         <label for="size" class="col-form-label">Length (CM)</label>
                     </div>
-                    <div class="col-auto">
+                    <div class="col-sm-auto">
                         <input type="number" step=".01" id="length" name="length" class="form-control">
                     </div>
-                    <div class="col-auto">
+                    <div class="col-sm-auto">
                         <span class="form-text">
                             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore, consequatur.
                         </span>
