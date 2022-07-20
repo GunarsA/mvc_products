@@ -23,8 +23,11 @@
                 <div class="col-sm-1">
                     <label for="sku" class="col-form-label">SKU</label>
                 </div>
-                <div class="col-auto">
-                    <input required type="text" id="sku" name="sku" value="<?= $product['sku'] ?? '' ?>" class="form-control" aria-describedby="skuHelpInline">
+                <div class="col-auto position-relative">
+                        <input required type="text" id="sku" name="sku" value="<?= $product['sku'] ?? '' ?>" class="form-control" aria-describedby="skuHelpInline">
+                        <div id="spinner" class="spinner-border text-primary position-absolute d-none" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
                 </div>
                 <div class="col-auto">
                     <span id="skuHelpInline" class="form-text">
@@ -32,6 +35,7 @@
                     </span>
                 </div>
             </div>
+
             <div class="row mb-3 g-3 align-items-center">
                 <div class="col-sm-1">
                     <label for="name" class="col-form-label">Name</label>

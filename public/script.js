@@ -35,10 +35,6 @@ if (window.location.pathname === "/add-product") {
         break;
     }
   });
-
-  // fetch("/read-product?sku=GGWP0007")
-  //   .then((response) => response.json())
-  //   .then((json) => console.log(json));
 }
 
 (() => {
@@ -63,10 +59,11 @@ if (window.location.pathname === "/add-product") {
     );
   });
 
-  const inputs = document.querySelectorAll(".form-control");
+  const inputs = document.querySelectorAll("[required]");
 
   // Loop over them and prevent submission
   Array.from(inputs).forEach((input) => {
+    console.log(input);
     input.addEventListener(
       "focusout",
       (event) => {
@@ -78,24 +75,34 @@ if (window.location.pathname === "/add-product") {
 
   const sku = document.querySelector("#sku");
   sku.addEventListener("focusout", (event) => {
+    const spinner = document.querySelector("#spinner");
+    spinner.classList.remove("d-none");
     fetch("/read-product?sku=" + event.target.value)
       .then((response) => response.json())
       .then((json) => {
-        if (json.exists === "true") {
-          event.target.setCustomValidity("already exists");
-        } else {
-          event.target.setCustomValidity("");
-        }
-      });
-    event.target.addEventListener("input", (event) => {
-      fetch("/read-product?sku=" + event.target.value)
-        .then((response) => response.json())
-        .then((json) => {
+        setTimeout(() => {
+          spinner.classList.add("d-none");
           if (json.exists === "true") {
             event.target.setCustomValidity("already exists");
           } else {
             event.target.setCustomValidity("");
           }
+        }, 300);
+      });
+    event.target.addEventListener("input", (event) => {
+      const spinner = document.querySelector("#spinner");
+      spinner.classList.remove("d-none");
+      fetch("/read-product?sku=" + event.target.value)
+        .then((response) => response.json())
+        .then((json) => {
+          setTimeout(() => {
+            spinner.classList.add("d-none");
+            if (json.exists === "true") {
+              event.target.setCustomValidity("already exists");
+            } else {
+              event.target.setCustomValidity("");
+            }
+          }, 300);
         });
     });
   });
