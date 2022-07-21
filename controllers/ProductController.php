@@ -3,8 +3,7 @@
 namespace app\controllers;
 
 use app\core\Database;
-use app\models\Product;
-use app\models\ProductTypes\{Disc, Book, Furniture};
+use app\models\ProductTypes\{Disc, Book, Furniture, Invalid};
 use app\view\ProductView;
 
 class ProductController
@@ -22,39 +21,24 @@ class ProductController
         $productData = [];
         $errors = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $productData['sku'] = $_POST['sku'];
-            $productData['name'] = $_POST['name'];
-            $productData['price'] = $_POST['price'];
-            $productData['type'] = $_POST['type'];
-            switch ($productData['type']) {
-                case 'DVD':
-                    $productData['value'] = $_POST['size'] . ' MB';
-                    break;
-                case 'Book':
-                    $productData['value'] = $_POST['weight'] . ' KG';
-                    break;
-                case 'Furniture':
-                    $productData['value'] = $_POST['height'] . 'x' . $_POST['width'] . 'x' . $_POST['length'] . ' CM';
-                    break;
-                default:
-                    $productData['value'] = 'invalid';
+            foreach($_POST as $key => $value){
+                $productData[$key] = $value;
             }
 
-            switch ($productData['type']) {
+            switch ($productData['type'] ?? '') {
                 case 'DVD':
-                    $product = new Disc();
+                    $product = new Disc($productData);
                     break;
                 case 'Book':
-                    $product = new Book();
+                    $product = new Book($productData);
                     break;
                 case 'Furniture':
-                    $product = new Furniture();
+                    $product = new Furniture($productData);
                     break;
                 default:
-                    $product = new Product();
+                    $product = new Invalid($productData);
             }
 
-            $product->load($productData);
             $errors = $product->validateData();
 
             if (!$errors) {

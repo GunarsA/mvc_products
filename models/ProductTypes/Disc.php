@@ -3,12 +3,20 @@
 namespace app\models\ProductTypes;
 
 use app\models\Product;
-use app\models\ProductValidate;
 
-class Disc extends Product implements ProductValidate
+class Disc extends Product
 {
-    public function validateValue()
+    protected function validateValue()
     {
-        return "";
+        if(!$this->data['size']) {
+            return "Size was not provided!";
+        }
+
+        if (is_numeric($this->data['size']) && floatval($this->data['size'] >= 0)) {
+            $this->value = $this->data['size'] . ' MB';
+            return "";
+        }
+
+        return "Invalid value for size!";
     }
 };

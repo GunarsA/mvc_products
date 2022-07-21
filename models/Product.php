@@ -6,19 +6,16 @@ use app\core\Database;
 
 abstract class Product
 {
-    public ?string $sku;
-    public ?string $name;
-    public ?float $price;
-    public ?string $type;
-    public ?string $value;
+    public string $sku;
+    public string $name;
+    public float $price;
+    public string $type;
+    public string $value;
+    protected $data;
 
-    public function load($data)
+    public function __construct($input)
     {
-        $this->sku = $data['sku'];
-        $this->name = $data['name'];
-        $this->price = floatval($data['price']);
-        $this->type = $data['type'];
-        $this->value = $data['value'];
+        $this->data = $input;
     }
 
     public function validateData()
@@ -42,41 +39,63 @@ abstract class Product
         return $errors;
     }
 
-    public function validateSku()
+    private function validateSku()
     {
+        if(!$this->data['sku']) {
+            return "SKU was not provided!";
+        }
+
         $db = new Database();
-        if ($db->getProduct($this->sku)) {
-            return "SKU already taken. Choose different one!";
+        if ($db->getProduct($this->data['sku'])) {
+            return "SKU already taken!";
         }
+
+        $this->sku = $this->data['sku'];
         return "";
     }
 
-    public function validateName()
+    private function validateName()
     {
-        if ($this->name === '') {
-            return "Enter valid name!";
+        if(!$this->data['name']) {
+            return "Name was not provided!";
         }
+
+        if ($this->data['name'] === '') {
+            return "Invalid name!";
+        }
+
+        $this->name = $this->data['name'];
         return "";
     }
 
-    public function validatePrice()
+    private function validatePrice()
     {
-        if (filter_var($this->price, FILTER_VALIDATE_FLOAT) && (strlen($this->price) > 0) && floatval($this->price >= 0)) {
-            return "";
+        if(!$this->data['price']) {
+            return "Price was not provided!";
         }
-            return "Enter valid price!";
+
+        if (!filter_var($this->data['price'], FILTER_VALIDATE_FLOAT) || !(strlen($this->data['price']) > 0) || !(floatval($this->data['price']) >= 0)) {
+            return "Invalid price!";
+        }
+        
+        $this->price = floatval($this->data['price']);
+        return "";
+        
     }
 
-    public function validateType()
+    private function validateType()
     {
-        if($this->type !== 'DVD' && $this->type !== 'Book' && $this->type !== 'Furniture') {
-            return "Choose valid type!";
+        if(!$this->data['type']) {
+            return "Type was not provided!";
         }
+        
+        if($this->data['type'] !== 'DVD' && $this->data['type'] !== 'Book' && $this->data['type'] !== 'Furniture') {
+            return "Invalid [type]!";
+        }
+
+        $this->type = $this->data['type'];
         return "";
     }
 
-    public function validateValue() 
-    {
-        return "";
-    }
+    abstract protected function validateValue();
 }

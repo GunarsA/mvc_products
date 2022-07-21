@@ -3,12 +3,21 @@
 namespace app\models\ProductTypes;
 
 use app\models\Product;
-use app\models\ProductValidate;
 
-class Book extends Product implements ProductValidate
+class Book extends Product
 {
-    public function validateValue()
+    protected function validateValue()
     {
-        return "";
+        if(!$this->data['weight']) {
+            return "Weight was not provided!";
+        }
+
+        if(is_numeric($this->data['weight']) && floatval($this->data['weight'] >= 0))
+        {
+            $this->value = $this->data['weight'].' KG';
+            return "";
+        }
+
+        return "Invalid value for weight!";
     }
 };
