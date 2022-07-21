@@ -61,14 +61,14 @@
                     <label for="price" class="col-form-label">Price ($)</label>
                 </div>
                 <div class="col-sm-auto">
-                    <input required type="number" step=".01" id="price" name="price" value="<?= $product['sku'] ?? '' ?>" class="form-control" aria-describedby="priceHelpInline">
+                    <input required type="number" step=".01" min=".01" id="price" name="price" value="<?= $product['sku'] ?? '' ?>" class="form-control" aria-describedby="priceHelpInline">
                     <div class="invalid-feedback">
-                        Please set a price.
+                        Please set a valid price.
                     </div>
                 </div>
                 <div class="col-sm-auto">
                     <span id="priceHelpInline" class="form-text">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Price needs to be a positive number with maximum precision of 0.01.
                     </span>
                 </div>
             </div>
@@ -86,7 +86,7 @@
                     <option value="Furniture">Furniture</option>
                 </select>
                 <div class="invalid-feedback">
-                    Please choose a product type.
+                    Please pick a product type.
                 </div>
             </div>
             <div class="col-sm-auto">
@@ -106,11 +106,14 @@
                         <label for="size" class="col-form-label">Size (MB)</label>
                     </div>
                     <div class="col-sm-auto">
-                        <input type="number" step=".01" id="size" name="size" class="form-control">
+                        <input type="number" step="1" min="1" id="size" name="size" class="form-control">
+                        <div class="invalid-feedback">
+                            Please set a valid size.
+                        </div>
                     </div>
                     <div class="col-sm-auto">
                         <span class="form-text">
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Enim.
+                            Size needs to be a positive integer.
                         </span>
                     </div>
                 </div>
@@ -122,14 +125,17 @@
                 </div>
                 <div class="row mb-3 g-3 align-items-center">
                     <div class="col-sm-2 col-lg-1">
-                        <label for="size" class="col-form-label">Weight (MB)</label>
+                        <label for="size" class="col-form-label">Weight (KG)</label>
                     </div>
                     <div class="col-sm-auto">
-                        <input type="number" step=".01" id="weight" name="weight" class="form-control">
+                        <input type="number" step="1" min="1" id="weight" name="weight" class="form-control">
+                        <div class="invalid-feedback">
+                            Please set a valid weight.
+                        </div>
                     </div>
                     <div class="col-sm-auto">
                         <span class="form-text">
-                            Lorem ipsum dolor sit amet consectetur.
+                            Weight needs to be a positive integer.
                         </span>
                     </div>
                 </div>
@@ -144,11 +150,14 @@
                         <label for="size" class="col-form-label">Height (CM)</label>
                     </div>
                     <div class="col-sm-auto">
-                        <input type="number" step=".01" id="height" name="height" class="form-control">
+                        <input type="number" step="1" min="1" id="height" name="height" class="form-control">
+                        <div class="invalid-feedback">
+                            Please set a valid height.
+                        </div>
                     </div>
                     <div class="col-sm-auto">
                         <span class="form-text">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Height needs to be a positive integer.
                         </span>
                     </div>
                 </div>
@@ -157,11 +166,14 @@
                         <label for="size" class="col-form-label">Width (CM)</label>
                     </div>
                     <div class="col-sm-auto">
-                        <input type="number" step=".01" id="width" name="width" class="form-control">
+                        <input type="number" step="1" min="1" id="width" name="width" class="form-control">
+                        <div class="invalid-feedback">
+                            Please set a valid width.
+                        </div>
                     </div>
                     <div class="col-sm-auto">
                         <span class="form-text">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore, consequatur.
+                            Width needs to be a positive integer.
                         </span>
                     </div>
                 </div>
@@ -170,11 +182,14 @@
                         <label for="size" class="col-form-label">Length (CM)</label>
                     </div>
                     <div class="col-sm-auto">
-                        <input type="number" step=".01" id="length" name="length" class="form-control">
+                        <input type="number" step="1" min="1" id="length" name="length" class="form-control">
+                        <div class="invalid-feedback">
+                            Please set a valid length.
+                        </div>
                     </div>
                     <div class="col-sm-auto">
                         <span class="form-text">
-                            Lorem ipsum dolor sit amet.
+                            Length needs to be a positive integer.
                         </span>
                     </div>
                 </div>
