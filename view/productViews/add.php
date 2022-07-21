@@ -148,7 +148,7 @@
                     </div>
                     <div class="col-sm-auto">
                         <span class="form-text">
-                           Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         </span>
                     </div>
                 </div>

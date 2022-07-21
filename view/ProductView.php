@@ -10,8 +10,8 @@ class ProductView
             $$key = $value;
         }
         ob_start();
-        include __DIR__."/productViews/$view.php";
+        include __DIR__ . "/productViews/$view.php";
         $content = ob_get_clean();
-        include __DIR__."/productViews/_layout.php";
+        include __DIR__ . "/productViews/_layout.php";
     }
 }
