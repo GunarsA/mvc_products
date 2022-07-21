@@ -8,6 +8,6 @@ class Invalid extends Product
 {
     protected function validateValue()
     {
-        return "Cannot check the validity of value because the product type is invalid!";
+        return "Validity of value couldn't be confirmed due to the product type being invalid!";
     }
 }

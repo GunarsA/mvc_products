@@ -4,8 +4,8 @@ namespace app\core;
 
 class Router
 {
-    public array $getRoutes = [];
-    public array $postRoutes = [];
+    private array $getRoutes = [];
+    private array $postRoutes = [];
 
     public function get($url, $fn)
     {
@@ -32,8 +32,7 @@ class Router
         if ($fn) {
             call_user_func($fn);
         } else {
-            echo "Page not found";
-            exit;
+           echo "Page Not Found";
         }
     }
 }

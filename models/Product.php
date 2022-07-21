@@ -11,7 +11,7 @@ abstract class Product
     public float $price;
     public string $type;
     public string $value;
-    protected $data;
+    protected array $data;
 
     public function __construct($input)
     {

@@ -4,7 +4,7 @@
         <span>
             <a href="/add-product" type="button" class="btn btn-outline-dark" type="submit">Add</a>
             <form action="/delete-product" method="post" id="delete-form" class="d-inline-block">
-                <button for="delete-form" class="btn btn-outline-dark" type="submit">Mass delete</button>
+                <button for="delete-form" id="delete-product-btn" class="btn btn-outline-dark" type="submit">Mass delete</button>
             </form>
         </span>
     </div>
@@ -18,7 +18,7 @@
                     <div class="card-body">
                         <div class="form-check-inline">
                             <label class="form-check-label">
-                                <input form="delete-form" type="checkbox" class="form-check-input" name="<?= $product['sku'] ?>">
+                                <input form="delete-form" type="checkbox" class="delete-checkbox form-check-input" name="<?= $product['sku'] ?>">
                             </label>
                         </div>
                         <p class="card-title text-center"><?= $product['sku'] ?></p>

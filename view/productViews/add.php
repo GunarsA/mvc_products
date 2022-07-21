@@ -27,7 +27,7 @@
                     <label for="sku" class="col-form-label">SKU</label>
                 </div>
                 <div class="col-sm-auto position-relative">
-                    <input required type="text" id="sku" name="sku" value="<?= $product['sku'] ?? '' ?>" class="form-control" aria-describedby="skuHelpInline">
+                    <input required type="text" id="sku" name="sku" class="form-control" value="<?= $product['sku'] ?? '' ?>">
                     <div id="spinner" class="spinner-border text-primary position-absolute d-none" role="status">
                         <span class="visually-hidden">Loading...</span>
                     </div>
@@ -36,7 +36,7 @@
                     </div>
                 </div>
                 <div class="col-sm-auto">
-                    <span id="skuHelpInline" class="form-text">
+                    <span class="form-text">
                         Stock Keeping Unit needs to be unique.
                     </span>
                 </div>
@@ -47,13 +47,13 @@
                     <label for="name" class="col-form-label">Name</label>
                 </div>
                 <div class="col-sm-auto">
-                    <input required type="text" id="name" name="name" value="<?= $product['name'] ?? '' ?>" class="form-control" aria-describedby="nameHelpInline">
+                    <input required type="text" id="name" name="name" value="<?= $product['name'] ?? '' ?>" class="form-control">
                     <div class="invalid-feedback">
                         Please choose a name.
                     </div>
                 </div>
                 <div class="col-sm-auto">
-                    <span id="nameHelpInline" class="form-text">
+                    <span class="form-text">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde, nostrum impedit.
                     </span>
                 </div>
@@ -63,13 +63,13 @@
                     <label for="price" class="col-form-label">Price ($)</label>
                 </div>
                 <div class="col-sm-auto">
-                    <input required type="number" step=".01" min=".01" id="price" name="price" value="<?= $product['price'] ?? '' ?>" class="form-control" aria-describedby="priceHelpInline">
+                    <input required type="number" step=".01" min=".01" id="price" name="price" value="<?= $product['price'] ?? '' ?>" class="form-control">
                     <div class="invalid-feedback">
                         Please set a valid price.
                     </div>
                 </div>
                 <div class="col-sm-auto">
-                    <span id="priceHelpInline" class="form-text">
+                    <span class="form-text">
                         Price needs to be a positive number with maximum precision of 0.01.
                     </span>
                 </div>

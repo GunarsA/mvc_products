@@ -7,7 +7,7 @@ use PDO;
 
 class Database
 {
-    public $pdo;
+    private PDO $pdo;
 
     public function __construct()
     {
