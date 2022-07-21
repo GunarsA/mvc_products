@@ -28,7 +28,7 @@ class Database
         $statement->bindValue(':sku', $sku);
         $statement->execute();
 
-        return $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
     public function deleteProduct($sku)

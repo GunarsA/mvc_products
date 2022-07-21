@@ -85,12 +85,7 @@ class ProductController
     public static function read() {
         header('Content-Type: application/json');
         $db = new Database();
-        if($db->getProduct($_GET['sku'])){
-            echo '{"exists": "true"}';
-        }
-        else {
-            echo '{"exists": "false"}';
-        }
+        echo json_encode($db->getProduct($_GET['sku']));
     }
 }
 

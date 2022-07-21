@@ -19,7 +19,6 @@ if (window.location.pathname === "/add-product") {
 
   function addIndividualValidation() {
     Array.from(document.querySelectorAll("[required]")).forEach((input) => {
-      console.log(input);
       input.addEventListener(
         "focusout",
         (event) => {
@@ -76,12 +75,12 @@ if (window.location.pathname === "/add-product") {
     const temp = (target) => {
       const spinner = document.querySelector("#spinner");
       spinner.classList.remove("d-none");
-      fetch("/read-product?sku=" + event.target.value)
+      fetch("/api/read-product?sku=" + target.value)
         .then((response) => response.json())
         .then((json) => {
           setTimeout(() => {
             spinner.classList.add("d-none");
-            if (json.exists === "true") {
+            if (json.hasOwnProperty("sku")) {
               target.setCustomValidity("SKU already exists");
               document.querySelector("#skuFeedback").textContent =
                 "SKU already exists.";
