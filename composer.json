@@ -1,5 +1,5 @@
 {
-    "name": "gunarsabeltins/lamp-server",
+    "name": "gunarsabeltins/lamp-stack",
     "autoload": {
         "psr-4": {
             "app\\": "./"
