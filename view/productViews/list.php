@@ -2,9 +2,9 @@
     <div class="container-fluid px-4">
         <h2 class="navbar-brand my-auto">Products List</h2>
         <span>
-            <a href="/add-product" type="button" class="btn btn-outline-dark" type="submit">Add</a>
+            <a href="/add-product" type="button" class="btn btn-outline-dark" type="submit">ADD</a>
             <form action="/delete-product" method="post" id="delete-form" class="d-inline-block">
-                <button for="delete-form" id="delete-product-btn" class="btn btn-outline-dark" type="submit">Mass delete</button>
+                <button for="delete-form" id="delete-product-btn" class="btn btn-outline-dark" type="submit">MASS DELETE</button>
             </form>
         </span>
     </div>

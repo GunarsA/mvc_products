@@ -2,7 +2,7 @@
     <div class="container-fluid px-4">
         <h2 class="navbar-brand my-auto">Product Add</h2>
         <span>
-            <button form="product-form" class="btn btn-outline-dark" type="submit">Save</button>
+            <button form="product_form" class="btn btn-outline-dark" type="submit">Save</button>
             <a href="/" type="button" class="btn btn-outline-dark" type="submit">Cancel</a>
         </span>
     </div>
@@ -20,7 +20,7 @@
 <?php endif; ?>
 
 <div class="container">
-    <form method="post" id="product-form" class="needs-validation" novalidate>
+    <form method="post" id="product_form" class="needs-validation" novalidate>
         <fieldset>
             <div class="row mb-3 g-3 align-items-center">
                 <div class="col-sm-2 col-lg-1">
