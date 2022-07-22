@@ -11,8 +11,37 @@ class Database
 
     public function __construct()
     {
-        $this->pdo = new PDO('mysql:host=' . DB_HOST . ';port=3306;dbname=' . DB_NAME, DB_USER, DB_PASSWORD);
+        $this->pdo = new PDO('mysql:host=' . DB_HOST . ';port=3306;', DB_USER, DB_PASSWORD);
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $statement = $this->pdo->query("SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'products_server';");
+        if (!$statement->fetchColumn()) {
+            $statement = $this->pdo->prepare(
+                "CREATE DATABASE products_server;
+                USE products_server;
+                CREATE TABLE `products` (
+                    `sku` varchar(255) COLLATE utf8_bin NOT NULL,
+                    `name` varchar(255) COLLATE utf8_bin NOT NULL,
+                    `price` float NOT NULL,
+                    `type` varchar(255) COLLATE utf8_bin NOT NULL,
+                    `value` varchar(255) COLLATE utf8_bin NOT NULL
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+              
+                INSERT INTO `products` (`sku`, `name`, `price`, `type`, `value`) VALUES
+                    ('GGWP0007', 'War and Peace', 20, 'Book', '2 KG'),
+                    ('JVC200123', 'Acme DISC', 1, 'DVD', '700 MB'),
+                    ('TR120555', 'Chair', 40, 'Furniture', '24x45x15 CM');
+              
+              
+                ALTER TABLE `products`
+                    ADD PRIMARY KEY (`sku`);
+                COMMIT;"
+            );
+            $statement->execute();
+            $statement->closeCursor();
+        }
+
+        $this->pdo->query("USE products_server;");
     }
 
     public function getProducts()
@@ -23,7 +52,8 @@ class Database
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getProduct($sku) {
+    public function getProduct($sku)
+    {
         $statement = $this->pdo->prepare('SELECT * FROM products WHERE sku = :sku');
         $statement->bindValue(':sku', $sku);
         $statement->execute();
