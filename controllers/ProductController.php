@@ -18,9 +18,11 @@ class ProductController
 
     public static function create()
     {
-        $productData = [];
+        $product = new Invalid([]);
         $errors = [];
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $productData = [];
             foreach ($_POST as $key => $value) {
                 $productData[$key] = $value;
             }
@@ -44,7 +46,7 @@ class ProductController
 
         ProductView::renderView('add', [
             'errors' => $errors,
-            'product' => $productData
+            'product' => $product
         ]);
     }
 

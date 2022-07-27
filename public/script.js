@@ -7,7 +7,7 @@ if (window.location.pathname === "/add-product") {
       "submit",
       (event) => {
         if (!form.checkValidity()) {
-          event.preventDefault();
+          //event.preventDefault();
           event.stopPropagation();
         }
 

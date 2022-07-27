@@ -27,7 +27,7 @@
                     <label for="sku" class="col-form-label">SKU</label>
                 </div>
                 <div class="col-sm-auto position-relative">
-                    <input required type="text" id="sku" name="sku" class="form-control" value="<?= $product['sku'] ?? '' ?>">
+                    <input required type="text" id="sku" name="sku" class="form-control" value="<?= $product->data['sku'] ?? '' ?>">
                     <div id="spinner" class="spinner-border text-primary position-absolute d-none" role="status">
                         <span class="visually-hidden">Loading...</span>
                     </div>
@@ -47,7 +47,7 @@
                     <label for="name" class="col-form-label">Name</label>
                 </div>
                 <div class="col-sm-auto">
-                    <input required type="text" id="name" name="name" value="<?= $product['name'] ?? '' ?>" class="form-control">
+                    <input required type="text" id="name" name="name" value="<?= $product->data['name'] ?? '' ?>" class="form-control">
                     <div class="invalid-feedback">
                         Please choose a name.
                     </div>
@@ -63,7 +63,7 @@
                     <label for="price" class="col-form-label">Price ($)</label>
                 </div>
                 <div class="col-sm-auto">
-                    <input required type="number" step=".01" min=".01" id="price" name="price" value="<?= $product['price'] ?? '' ?>" class="form-control">
+                    <input required type="number" step=".01" min=".01" id="price" name="price" value="<?= $product->data['price'] ?? '' ?>" class="form-control">
                     <div class="invalid-feedback">
                         Please set a valid price.
                     </div>
@@ -82,10 +82,10 @@
             </div>
             <div class="col-sm-auto">
                 <select required id="productType" name="type" class="form-select">
-                    <option <?php if (!($product['type'] ?? '')) echo "selected"; ?> value="">Type Switcher</option>
+                    <option <?php if (!($product->data['type'] ?? '')) echo "selected"; ?> value="">Type Switcher</option>
 
-                    <?php foreach (['DVD', 'Book', 'Furniture'] as $value) : ?>
-                        <option <?php if (($product['type'] ?? '') === $value) echo "selected"; ?> value="<?= $value ?>"><?= $value ?></option>
+                    <?php foreach ($product::$validTypes ?? '' as $value) : ?>
+                        <option <?php if (($product->data['type'] ?? '') === $value) echo "selected"; ?> value="<?= $value ?>"><?= $value ?></option>
                     <?php endforeach ?>
 
                 </select>
@@ -110,7 +110,7 @@
                         <label for="size" class="col-form-label">Size (MB)</label>
                     </div>
                     <div class="col-sm-auto">
-                        <input type="number" step="1" min="1" id="size" name="size" class="form-control" value="<?= $product['size'] ?? '' ?>">
+                        <input type="number" step="1" min="1" id="size" name="size" class="form-control" value="<?= $product->data['size'] ?? '' ?>">
                         <div class="invalid-feedback">
                             Please set a valid size.
                         </div>
@@ -132,7 +132,7 @@
                         <label for="size" class="col-form-label">Weight (KG)</label>
                     </div>
                     <div class="col-sm-auto">
-                        <input type="number" step="1" min="1" id="weight" name="weight" class="form-control" value="<?= $product['weight'] ?? '' ?>">
+                        <input type="number" step="1" min="1" id="weight" name="weight" class="form-control" value="<?= $product->data['weight'] ?? '' ?>">
                         <div class="invalid-feedback">
                             Please set a valid weight.
                         </div>
@@ -154,7 +154,7 @@
                         <label for="size" class="col-form-label">Height (CM)</label>
                     </div>
                     <div class="col-sm-auto">
-                        <input type="number" step="1" min="1" id="height" name="height" class="form-control" value="<?= $product['height'] ?? '' ?>">
+                        <input type="number" step="1" min="1" id="height" name="height" class="form-control" value="<?= $product->data['height'] ?? '' ?>">
                         <div class="invalid-feedback">
                             Please set a valid height.
                         </div>
@@ -170,7 +170,7 @@
                         <label for="size" class="col-form-label">Width (CM)</label>
                     </div>
                     <div class="col-sm-auto">
-                        <input type="number" step="1" min="1" id="width" name="width" class="form-control" value="<?= $product['width'] ?? '' ?>">
+                        <input type="number" step="1" min="1" id="width" name="width" class="form-control" value="<?= $product->data['width'] ?? '' ?>">
                         <div class="invalid-feedback">
                             Please set a valid width.
                         </div>
@@ -186,7 +186,7 @@
                         <label for="size" class="col-form-label">Length (CM)</label>
                     </div>
                     <div class="col-sm-auto">
-                        <input type="number" step="1" min="1" id="length" name="length" class="form-control" value="<?= $product['length'] ?? '' ?>">
+                        <input type="number" step="1" min="1" id="length" name="length" class="form-control" value="<?= $product->data['length'] ?? '' ?>">
                         <div class="invalid-feedback">
                             Please set a valid length.
                         </div>

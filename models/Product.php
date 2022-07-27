@@ -11,7 +11,8 @@ abstract class Product
     public float $price;
     public string $type;
     public string $value;
-    protected array $data;
+    public static array $validTypes = ['DVD', 'Book', 'Furniture'];
+    public array $data;
 
     public function __construct($input)
     {
@@ -83,13 +84,20 @@ abstract class Product
         
     }
 
+    protected function reduceType($carry, $item){
+        if($carry === true || $item === $carry){
+            return true;
+        }
+        return $carry;
+    }
+
     private function validateType()
     {
         if(!$this->data['type']) {
             return "Type was not provided!";
         }
-        
-        if($this->data['type'] !== 'DVD' && $this->data['type'] !== 'Book' && $this->data['type'] !== 'Furniture') {
+
+        if(array_reduce($this::$validTypes, array($this, "reduceType"), $this->data['type']) !== true){
             return "Invalid type!";
         }
 
