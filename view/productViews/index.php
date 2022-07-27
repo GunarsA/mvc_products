@@ -24,22 +24,7 @@
                         <p class="card-title text-center"><?= $product['sku'] ?></p>
                         <p class="card-text text-center"><?= $product['name'] ?></p>
                         <p class="card-text text-center"><?= $product['price'] ?> $</p>
-                        <p class="card-text text-center">
-                            <?php
-                            switch ($product['type']) {
-                                case 'DVD':
-                                    echo 'Size: ';
-                                    break;
-                                case 'Book':
-                                    echo 'Weight: ';
-                                    break;
-                                case 'Furniture':
-                                    echo 'Dimensions: ';
-                                    break;
-                            }
-                            echo $product['value']
-                            ?>
-                        </p>
+                        <p class="card-text text-center"><?= $product['value'] ?></p>
                     </div>
                 </div>
             </div>

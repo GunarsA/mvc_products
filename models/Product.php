@@ -90,7 +90,7 @@ abstract class Product
         }
         
         if($this->data['type'] !== 'DVD' && $this->data['type'] !== 'Book' && $this->data['type'] !== 'Furniture') {
-            return "Invalid [type]!";
+            return "Invalid type!";
         }
 
         $this->type = $this->data['type'];

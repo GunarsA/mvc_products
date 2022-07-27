@@ -107,7 +107,7 @@
         </div>
 
         <div id="descriptions" class="mb-5">
-            <fieldset id="discDescription" class="d-none">
+            <fieldset id="dvdDescription" class="d-none">
                 <div class="row mb-1">
                     <legend>Provide size</legend>
                 </div>

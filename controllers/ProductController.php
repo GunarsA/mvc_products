@@ -3,7 +3,7 @@
 namespace app\controllers;
 
 use app\core\Database;
-use app\models\ProductTypes\{Disc, Book, Furniture, Invalid};
+use app\models\ProductTypes\Invalid;
 use app\view\ProductView;
 
 class ProductController
@@ -21,22 +21,15 @@ class ProductController
         $productData = [];
         $errors = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            foreach($_POST as $key => $value){
+            foreach ($_POST as $key => $value) {
                 $productData[$key] = $value;
             }
 
-            switch ($productData['type'] ?? '') {
-                case 'DVD':
-                    $product = new Disc($productData);
-                    break;
-                case 'Book':
-                    $product = new Book($productData);
-                    break;
-                case 'Furniture':
-                    $product = new Furniture($productData);
-                    break;
-                default:
-                    $product = new Invalid($productData);
+            $cname = "app\\models\\ProductTypes\\" . $_POST['type'];
+            if (class_exists($cname)) {
+                $product = new $cname($productData);
+            } else {
+                $product = new Invalid($productData);
             }
 
             $errors = $product->validateData();
@@ -57,7 +50,7 @@ class ProductController
 
     public static function delete()
     {
-        if($_POST) {
+        if ($_POST) {
             $db = new Database();
             foreach ($_POST as $key => $value) {
                 $db->deleteProduct($key);
@@ -66,10 +59,10 @@ class ProductController
         header('Location: /');
     }
 
-    public static function read() {
+    public static function read()
+    {
         header('Content-Type: application/json');
         $db = new Database();
         echo json_encode($db->getProduct($_GET['sku']));
     }
 }
-

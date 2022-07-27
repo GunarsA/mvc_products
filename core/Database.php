@@ -28,9 +28,9 @@ class Database
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
               
                 INSERT INTO `products` (`sku`, `name`, `price`, `type`, `value`) VALUES
-                    ('GGWP0007', 'War and Peace', 20, 'Book', '2 KG'),
-                    ('JVC200123', 'Acme DISC', 1, 'DVD', '700 MB'),
-                    ('TR120555', 'Chair', 40, 'Furniture', '24x45x15 CM');
+                    ('GGWP0007', 'War and Peace', 20, 'Book', 'Weight: 2 KG'),
+                    ('JVC200123', 'Acme DISC', 1, 'DVD', 'Size: 700 MB'),
+                    ('TR120555', 'Chair', 40, 'Furniture', 'Dimensions: 24x45x15 CM');
               
               
                 ALTER TABLE `products`

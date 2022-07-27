@@ -33,44 +33,32 @@ if (window.location.pathname === "/add-product") {
     document
       .querySelector("#productType")
       .addEventListener("change", (event) => {
-        const discField = document.querySelector("#discDescription");
-        const bookField = document.querySelector("#bookDescription");
-        const furnitureField = document.querySelector("#furnitureDescription");
-
-        discField.classList.add("d-none");
-        bookField.classList.add("d-none");
-        furnitureField.classList.add("d-none");
-
         document.querySelectorAll("#descriptions input").forEach((element) => {
           element.removeAttribute("required");
         });
 
-        switch (event.target.value) {
-          case "DVD":
-            discField.classList.remove("d-none");
-            discField.querySelectorAll("input").forEach((element) => {
-              element.setAttribute("required", "");
-            });
-            break;
-          case "Book":
-            bookField.classList.remove("d-none");
-            bookField.querySelectorAll("input").forEach((element) => {
-              element.setAttribute("required", "");
-            });
-            break;
-          case "Furniture":
-            furnitureField.classList.remove("d-none");
-            const temp = furnitureField.querySelectorAll("input");
-            temp.forEach((element) => {
-              element.setAttribute("required", "");
-            });
-            break;
+        document
+          .querySelectorAll("option:not(:first-child)")
+          .forEach((option) => {
+            document
+              .querySelector("#" + option.value.toLowerCase() + "Description")
+              .classList.add("d-none");
+          });
+
+        if (event.target.value) {
+          const field = document.querySelector(
+            "#" + event.target.value.toLowerCase() + "Description"
+          );
+          field.classList.remove("d-none");
+          field.querySelectorAll("input").forEach((element) => {
+            element.setAttribute("required", "");
+          });
         }
 
         addIndividualValidation();
       });
 
-      document.querySelector("#productType").dispatchEvent(new Event('change'));
+    document.querySelector("#productType").dispatchEvent(new Event("change"));
   }
 
   function addSkuValidator() {
