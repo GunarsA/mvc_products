@@ -82,18 +82,12 @@
             </div>
             <div class="col-sm-auto">
                 <select required id="productType" name="type" class="form-select">
-                    <option <?php if (!($product['type'] ?? '')) {
-                                echo "selected";
-                            } ?> value="">Type Switcher</option>
-                    <option <?php if (($product['type'] ?? '') === 'DVD') {
-                                echo "selected";
-                            } ?> value="DVD">DVD</option>
-                    <option <?php if (($product['type'] ?? '') === 'Book') {
-                                echo "selected";
-                            } ?> value="Book">Book</option>
-                    <option <?php if (($product['type'] ?? '') === 'Furniture') {
-                                echo "selected";
-                            } ?> value="Furniture">Furniture</option>
+                    <option <?php if (!($product['type'] ?? '')) echo "selected"; ?> value="">Type Switcher</option>
+
+                    <?php foreach (['DVD', 'Book', 'Furniture'] as $value) : ?>
+                        <option <?php if (($product['type'] ?? '') === $value) echo "selected"; ?> value="<?= $value ?>"><?= $value ?></option>
+                    <?php endforeach ?>
+
                 </select>
                 <div class="invalid-feedback">
                     Please pick a product type.
